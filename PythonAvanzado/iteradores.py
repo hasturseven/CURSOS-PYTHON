@@ -1,6 +1,11 @@
 import time 
 
 class fiboIter():
+    repeticiones=0
+    number=0
+    def __init__(self,number):
+        self.number=number
+
     #metodos necesarios para hacer una clase que sea iterador son dos el iter y el next algo asi como lo que pasaba con los threads en java
 
     #primer metodo qu ees el que convierte el objeto iterador en un iterable 
@@ -19,6 +24,7 @@ class fiboIter():
         elif self.counter ==1:
             self.counter+=1
             return self.n2
+
         else:
             self.aux=self.n1+self.n2
             #self.n1=self.n2
@@ -26,12 +32,17 @@ class fiboIter():
             #generand un suag un intercambio de varables en python
             self.n1 , self.n2=self.n2,self.aux
             self.counter +=1
+            self.repeticiones+=1
+            if self.repeticiones == self.number:
+                raise StopIteration
             return self.aux
+            
+            
 
 
 if __name__=="__main__":
 
-    fibonacci =fiboIter()
+    fibonacci =fiboIter(5)
     for element in fibonacci:
         print(element)
         time.sleep(1) #pausa un segundo despues de imprimir cada elemento
